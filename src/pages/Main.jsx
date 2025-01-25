@@ -44,7 +44,6 @@ const MainPage = () => {
 
   return (
     <>
-      <h1 className="">Cat Expense</h1>
       <div className="dropdown">
         <button
           className="btn"

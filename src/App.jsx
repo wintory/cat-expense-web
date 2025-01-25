@@ -1,8 +1,10 @@
+import { lazy } from 'react'
 import './App.css'
 import AppProvider from './providers/AppProvider'
-import MainPage from './pages/Main'
 
 const App = () => {
+  const MainPage = lazy(() => import('./pages/Main'))
+
   return (
     <AppProvider>
       <MainPage />

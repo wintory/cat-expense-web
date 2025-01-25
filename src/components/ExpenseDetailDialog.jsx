@@ -14,89 +14,123 @@ const ExpenseDetailModal = ({
 }) => {
   return (
     <dialog
-      className={classNames('modal modal-bottom w-full sm:modal-middle', {
+      className={classNames('modal modal-bottom w-full md:modal-middle', {
         'modal-open': isOpen,
       })}
     >
-      <div className="modal-box flex flex-col-reverse justify-evenly">
+      <div className="modal-box flex flex-col-reverse">
         <button
           className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
           onClick={onCloseModal}
         >
           ✕
         </button>
-        <div className="flex flex-col px-4 py-6">
-          <div className="inline-flex items-center">
-            <p className={classNames({ 'text-error': errors?.name })}>Name</p>
-            <input
-              type="text"
-              placeholder="Enter item Name"
-              className={classNames(
-                'input input-bordered w-[250px]',
-                errors.name && 'input-error'
-              )}
-              {...register('name', { required: 'Name is empty.' })}
-            />
-          </div>
-          {errors.name && <p className="text-error">{errors.name?.message}</p>}
-          <div className="inline-flex items-center">
-            <p className={classNames({ 'text-error': errors?.category })}>
-              Category
-            </p>
-            <select
-              className="select select-bordered w-[250px]"
-              {...register('category', {
-                required: 'Category is empty.',
+        <div className="flex flex-col gap-4 px-4 py-6">
+          <div className="inline-flex items-center gap-4">
+            <p
+              className={classNames('w-[80px] text-left', {
+                'text-error': errors?.name,
               })}
             >
-              {CAT_EXPENSE_CATEGORY.map(({ key, label }) => (
-                <option key={key}>{label}</option>
-              ))}
-            </select>
+              Name
+            </p>
+            <div className="relative flex w-full flex-1">
+              <input
+                type="text"
+                placeholder="Enter item Name"
+                className={classNames(
+                  'input input-bordered min-h-[48px] flex-1',
+                  errors?.name && 'input-error'
+                )}
+                {...register('name', { required: 'Name is empty.' })}
+              />
+              {errors.name && (
+                <p className="absolute -bottom-5 text-left text-xs text-error">
+                  {errors.name?.message}
+                </p>
+              )}
+            </div>
           </div>
-          {errors?.category && (
-            <p className="text-error">{errors.category?.message}</p>
-          )}
-          <div className="items-center sm:inline-flex">
-            <p className={classNames({ 'text-error': errors?.category })}>
+
+          <div className="relative inline-flex items-center gap-4">
+            <p
+              className={classNames('w-[80px] text-left', {
+                'text-error': errors?.category,
+              })}
+            >
+              Category
+            </p>
+            <div className="flex w-full flex-1 flex-col">
+              <select
+                className={classNames('select select-bordered flex-1', {
+                  'select-error': errors?.category,
+                })}
+                {...register('category', {
+                  required: 'Category is empty.',
+                })}
+              >
+                {CAT_EXPENSE_CATEGORY.map(({ key, label }) => (
+                  <option key={key}>{label}</option>
+                ))}
+              </select>
+              {errors?.category && (
+                <p className="absolute -bottom-5 text-left text-xs text-error">
+                  {errors.category?.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="relative flex-1 items-center gap-4 sm:inline-flex">
+            <p
+              className={classNames('w-[80px] text-left', {
+                'text-error': errors?.amount,
+              })}
+            >
               Amount
             </p>
-            <input
-              type="number"
-              placeholder="Enter item Amount"
-              className="input input-bordered w-[250px]"
-              {...register('amount', {
-                required: 'Amount is empty.',
-                valueAsNumber: true,
-                min: {
-                  value: 1,
-                  message: 'Amount must be greater than 0.',
-                },
-              })}
-            />
+            <div className="flex w-full flex-1 flex-col">
+              <input
+                type="number"
+                placeholder="Enter item Amount"
+                className={classNames(
+                  'input input-bordered relative',
+                  errors?.name && 'input-error'
+                )}
+                {...register('amount', {
+                  required: 'Amount is empty.',
+                  valueAsNumber: true,
+                  min: {
+                    value: 1,
+                    message: 'Amount must be greater than 0.',
+                  },
+                })}
+              />
+              {errors?.amount && (
+                <p className="absolute -bottom-5 text-left text-xs text-error">
+                  {errors.amount?.message}
+                </p>
+              )}
+            </div>
           </div>
-          {errors?.amount && (
-            <p className="text-error">{errors.amount?.message}</p>
-          )}
 
           <button className="btn btn-primary" onClick={onSubmit}>
-            Add
+            <p>Add</p>
           </button>
         </div>
-        <div className="flex flex-col px-4 py-6 text-left">
-          {isLoadingContent ? (
-            <div>Loading...</div>
-          ) : (
+        <div className="flex min-h-[135px] flex-col px-4 py-6 text-left">
+          {contentTitle || contentDescription ? (
             <>
-              {contentTitle || contentDescription ? (
-                <>
-                  <p className="text-md italic sm:text-lg">
-                    {contentTitle}: {contentDescription}
-                  </p>
-                </>
-              ) : null}
+              <p className="text-md flex items-center gap-4 italic sm:text-lg">
+                {contentTitle}:{' '}
+                {isLoadingContent ? (
+                  <span className="loading loading-dots loading-lg" />
+                ) : (
+                  contentDescription
+                )}
+              </p>
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </dialog>

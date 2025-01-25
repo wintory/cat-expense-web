@@ -8,7 +8,7 @@ const useCatFact = () => {
     queryFn: () => getCatFact({ maxLength: CAT_FACT_MAX_LENGTH }),
     enabled: false,
   })
-
+  console.log({ data, isLoading, errors })
   return {
     catFact: data?.data?.fact || '',
     isLoading,
