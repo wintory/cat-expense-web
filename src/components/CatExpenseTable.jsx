@@ -20,8 +20,8 @@ const CatExpenseTable = ({ expenses = [], onSelectItem }) => {
             return (
               <tr
                 key={expense?.id}
-                className={classNames({
-                  'bg-gray-300 text-sm text-primary': expense?.isHighlighted,
+                className={classNames('text-sm', {
+                  'bg-neutral text-yellow-200': expense?.isHighlighted,
                 })}
               >
                 <th>
