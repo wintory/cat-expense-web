@@ -1,3 +1,5 @@
+import daisyui from 'daisyui'
+
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
@@ -8,7 +10,7 @@ export default {
       xl: '1440px',
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [daisyui],
   daisyui: {
     themes: ['cupcake', 'dark'],
     darkTheme: 'dark',
