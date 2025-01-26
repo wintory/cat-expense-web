@@ -14,8 +14,7 @@ const useExpense = () => {
     reset,
     clearErrors,
     setValue,
-    watch,
-    onBlur,
+    trigger,
   } = useForm({
     defaultValues: {
       name: '',
@@ -85,6 +84,11 @@ const useExpense = () => {
     [selectedExpense, setSelectedExpense, expenses]
   )
 
+  const setFieldValue = (name, value) => {
+    setValue(name, value)
+    trigger(name)
+  }
+
   const expenseData = useMemo(() => {
     const maxExpense = Math.max(...expenses.map((expense) => expense.amount))
     const transformedExpenses = expenses.map(({ amount, ...expense }) => {
@@ -99,20 +103,17 @@ const useExpense = () => {
   }, [expenses])
 
   return {
+    expenseData,
+    selectedExpense,
     isOpenExpenseModal,
     setIsOpenExpenseModal,
-    handleCloseExpenseModal,
-    handleAddExpense,
-    handleRemoveExpense,
-    expenseData,
     handleSelectItem,
-    submitExpense,
+    handleRemoveExpense,
     handleCloseModal,
+    submitExpense,
     register,
     errors,
-    selectedExpense,
-    setValue,
-    clearErrors,
+    setValue: setFieldValue,
   }
 }
 

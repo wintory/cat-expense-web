@@ -16,14 +16,13 @@ const MainPage = () => {
     register,
     errors,
     setValue,
-    onBlur,
   } = useExpense()
   const { catFact, isLoading, refetchCatFact } = useCatFact()
 
   return (
     <>
       <div className="float-start mt-[2rem] flex h-[calc(100vh-10rem)] w-full flex-col-reverse rounded-md bg-slate-950 p-4 md:flex-col">
-        <div className="dropdown flex flex-col items-center justify-between gap-2 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
           <p className="hidden text-xl md:block">Expense History</p>
           <button
             className="btn btn-primary w-full md:w-fit"
@@ -62,18 +61,19 @@ const MainPage = () => {
         </div>
       </div>
 
-      <ExpenseDetailModal
-        register={register}
-        setValue={setValue}
-        isOpen={isOpenExpenseModal}
-        onCloseModal={handleCloseModal}
-        contentTitle="Random cat fact"
-        contentDescription={catFact}
-        isLoadingContent={isLoading}
-        onSubmit={submitExpense}
-        errors={errors}
-        onBlur={onBlur}
-      />
+      {isOpenExpenseModal && (
+        <ExpenseDetailModal
+          register={register}
+          setValue={setValue}
+          isOpen={isOpenExpenseModal}
+          onCloseModal={handleCloseModal}
+          contentTitle="Random cat fact"
+          contentDescription={catFact}
+          isLoadingContent={isLoading}
+          onSubmit={submitExpense}
+          errors={errors}
+        />
+      )}
     </>
   )
 }
