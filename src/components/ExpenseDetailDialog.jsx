@@ -31,6 +31,7 @@ const ExpenseDetailModal = ({
       >
         <div className="modal-box flex flex-col-reverse">
           <button
+            data-testid="close-button"
             className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
             onClick={onCloseModal}
           >
@@ -85,7 +86,7 @@ const ExpenseDetailModal = ({
                         : 'border-neutral hover:border-primary'
                     )}
                     {...register('category', {
-                      required: 'category is empty.',
+                      required: 'Category is empty.',
                     })}
                     onClick={() =>
                       setIsOpenCategoryDropdown(!isOpenCategoryDropdown)
@@ -151,7 +152,7 @@ const ExpenseDetailModal = ({
             </div>
 
             <button className="btn btn-primary mt-[2rem]" onClick={onSubmit}>
-              <p>Add</p>
+              <p data-testid="add-button">Add</p>
             </button>
           </div>
           <div className="flex flex-col px-4 py-6 text-left md:min-h-[135px]">
