@@ -27,6 +27,7 @@ const CatExpenseTable = ({ expenses = [], onSelectItem }) => {
                 <th>
                   <input
                     type="checkbox"
+                    data-testid={`checkbox-expense-${expense.id}`}
                     className="checkbox border-primary"
                     onChange={() => onSelectItem(expense?.id)}
                   />
