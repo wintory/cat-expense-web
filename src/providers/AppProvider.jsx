@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
-      <Suspense fallback={FullscreenLoader}>
+      <Suspense fallback={<FullscreenLoader />}>
         <div className="bg-image" />
         <Navbar />
         {children}
