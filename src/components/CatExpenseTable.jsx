@@ -3,14 +3,16 @@ import { memo } from 'react'
 
 const CatExpenseTable = ({ expenses = [], onSelectItem }) => {
   return (
-    <div className="overflow-x-auto">
-      <table className="table">
+    <div className="h-full w-full items-center justify-center overflow-x-auto p-2">
+      <table className="table text-sm">
         <thead>
-          <tr>
+          <tr className="text-white">
             <th></th>
-            <th>Item</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th>
+              <p className="text-sm">Item</p>
+            </th>
+            <th className="text-sm">Category</th>
+            <th className="text-sm">Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -19,19 +21,19 @@ const CatExpenseTable = ({ expenses = [], onSelectItem }) => {
               <tr
                 key={expense?.id}
                 className={classNames({
-                  'bg-yellow-50 text-primary': expense?.isHighlighted,
+                  'bg-gray-300 text-sm text-primary': expense?.isHighlighted,
                 })}
               >
                 <th>
                   <input
                     type="checkbox"
-                    className="checkbox"
+                    className="checkbox border-primary"
                     onChange={() => onSelectItem(expense?.id)}
                   />
                 </th>
                 <td>{expense.name}</td>
                 <td>{expense.category}</td>
-                <td>{expense.amount}</td>
+                <td>{expense.displayAmount}</td>
               </tr>
             )
           })}
