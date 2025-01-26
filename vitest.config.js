@@ -9,8 +9,8 @@ export default defineConfig({
     },
     environment: 'jsdom',
     globals: true,
-    include: ['**/*.test.{js,jsx}'],
-    exclude: ['node_modules', '**/constants/**'],
+    include: ['src/**/*.test.{js,jsx}'],
+    exclude: ['node_modules', '**/constants/**', '*.config.js', '**/tests/**'],
     setupFiles: ['src/tests/setupTest.js'],
   },
 })

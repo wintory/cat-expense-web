@@ -17,7 +17,6 @@ describe('MainPage', () => {
     const { getByTestId, getByRole } = renderWithProviders(<MainPage />)
 
     const addExpenseButton = getByRole('button', { name: 'Add Expense' })
-    console.log({ addExpenseButton })
     await addExpenseButton.click()
 
     const expenseModal = getByTestId('expense-modal')

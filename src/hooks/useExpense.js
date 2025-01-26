@@ -6,7 +6,6 @@ const useExpense = () => {
   const [isOpenExpenseModal, setIsOpenExpenseModal] = useState(false)
   const [expenses, setExpenses] = useState([])
   const [selectedExpense, setSelectedExpense] = useState([])
-
   const {
     register,
     handleSubmit,
@@ -28,6 +27,7 @@ const useExpense = () => {
     (data) => {
       setIsOpenExpenseModal(false)
       setExpenses((prevExpenses) => {
+        console.log({ prevExpenses })
         return [
           ...prevExpenses,
           {
@@ -111,6 +111,7 @@ const useExpense = () => {
     handleRemoveExpense,
     handleCloseModal,
     submitExpense,
+    handleAddExpense,
     register,
     errors,
     setValue: setFieldValue,
