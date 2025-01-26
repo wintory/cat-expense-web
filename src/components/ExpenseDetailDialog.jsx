@@ -29,7 +29,10 @@ const ExpenseDetailModal = ({
           'modal-open': isOpen,
         })}
       >
-        <div className="modal-box flex flex-col-reverse">
+        <div
+          className="modal-box flex flex-col-reverse"
+          data-testid="expense-modal"
+        >
           <button
             data-testid="close-button"
             className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
